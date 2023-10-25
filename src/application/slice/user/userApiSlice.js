@@ -49,7 +49,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
     }),
     getSchedules: builder.mutation({
       query: (data) => {
-        console.log("nihtin raj")
+        
         return { url: `${USERS_URL}/schedule`,
          method: "GET" };
       },

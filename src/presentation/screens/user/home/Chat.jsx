@@ -6,15 +6,13 @@ import {
   Avatar,
   Grid,
   Paper,
-  LinearProgress,
   CircularProgress,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { Container } from "@mui/system";
 import { useState, useEffect, useRef, useMemo } from "react";
 import io from "socket.io-client";
 import { useSelector } from "react-redux";
-const socket = io("http://localhost:5000");
+const socket = io(import.meta.env.VITE_APP_SERVER_URL);
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import { useGetMessageMutation } from "../../../../application/slice/user/userApiSlice";
 

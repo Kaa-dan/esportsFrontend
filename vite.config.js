@@ -8,7 +8,7 @@ export default defineConfig({
     port:4000,
     proxy:{
       "/api":{
-        target:"http://localhost:5000",
+        target:import.meta.env.VITE_APP_SERVER_URL,
         changeOrigin:true
       }
     }
