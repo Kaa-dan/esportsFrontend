@@ -6,13 +6,14 @@ import {
   Avatar,
   Grid,
   Paper,
+  LinearProgress,
   CircularProgress,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useState, useEffect, useRef, useMemo } from "react";
 import io from "socket.io-client";
 import { useSelector } from "react-redux";
-const socket = io(import.meta.env.VITE_APP_SERVER_URL);
+const socket = io("https://esportsbackend-7ask.onrender.com");
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import { useGetMessageMutation } from "../../../../application/slice/user/userApiSlice";
 
@@ -84,7 +85,7 @@ const ChatUI = () => {
       }}
     >
       {isLoading ? (
-          <div
+        <div
           style={{
             display: "flex",
             justifyContent: "center",
@@ -117,56 +118,55 @@ const ChatUI = () => {
               },
             }}
           >
-         
-{[...serverMessage].reverse().map((message, index) => (
-    <Box
-        sx={{
-            display: "flex",
-            justifyContent:
-                user._id !== message.user._id ? "flex-start" : "flex-end",
-            mb: 2,
-        }}
-        key={index}
-    >
-        <Box
-            sx={{
-                display: "flex",
-                flexDirection:
-                    user._id !== message.user._id ? "row" : "row-reverse",
-                alignItems: "center",
-            }}
-        >
-            <>
-                {" "}
-                <Avatar
-                    sx={{
+            {[...serverMessage].reverse().map((message, index) => (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent:
+                    user._id !== message.user._id ? "flex-start" : "flex-end",
+                  mb: 2,
+                }}
+                key={index}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection:
+                      user._id !== message.user._id ? "row" : "row-reverse",
+                    alignItems: "center",
+                  }}
+                >
+                  <>
+                    {" "}
+                    <Avatar
+                      sx={{
                         bgcolor:
-                            user._id !== message.user._id
-                                ? "primary.main"
-                                : "secondary.main",
-                    }}
-                    src={`${message.user.profilePhoto}`}
-                />
-                <Paper
-                    variant="outlined"
-                    sx={{
+                          user._id !== message.user._id
+                            ? "primary.main"
+                            : "secondary.main",
+                      }}
+                      src={`${message.user.profilePhoto}`}
+                    />
+                    <Paper
+                      variant="outlined"
+                      sx={{
                         p: 2,
                         ml: user._id !== message.user._id ? 1 : 0,
                         mr: user._id !== message.user._id ? 0 : 1,
                         backgroundColor:
-                            user._id !== message.user._id ? "#631976" : "#a44fbb",
+                          user._id !== message.user._id ? "#631976" : "#a44fbb",
                         borderRadius:
-                            user._id !== message.user._id
-                                ? "20px 20px 20px 5px"
-                                : "20px 20px 5px 20px",
-                    }}
-                >
-                    <Typography variant="body1">{message.message}</Typography>
-                </Paper>
-            </>
-        </Box>
-    </Box>
-))}
+                          user._id !== message.user._id
+                            ? "20px 20px 20px 5px"
+                            : "20px 20px 5px 20px",
+                      }}
+                    >
+                      <Typography variant="body1">{message.message}</Typography>
+                    </Paper>
+                  </>
+                </Box>
+              </Box>
+            ))}
 
             {messages.map((message, index) => (
               <Box
