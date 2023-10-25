@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Box, Container } from "@mui/system";
 import Cropper from "react-easy-crop";
-// import backGroundVideo from "../../../assets/user/dashboard/livecornerVideo.mp4";
+import backGroundVideo from "../../../assets/user/dashboard/livecornerVideo.mp4";
 const LiveSetup = () => {
   const [croppedImage, setCroppedImage] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -63,7 +63,7 @@ const LiveSetup = () => {
   return (
     <>
    
-   {/* <video
+   <video
         autoPlay
         loop
         muted
@@ -77,7 +77,7 @@ const LiveSetup = () => {
         }}
       >
         <source src={backGroundVideo} type="video/mp4" />
-      </video> */}
+      </video>
       <Grid
         sx={{ mt: 14, justifyContent: "center", alignItems: "center" }}
         spacing={3}

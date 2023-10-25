@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Carousel from "react-elastic-carousel";
-// import styled from "styled-components";
+import styled from "styled-components";
 import { useGetOnGoingrecruitmentUserMutation } from "../../../../application/slice/admin/adminApiSlice";
 import {
   useAcceptRecruitmentMutation,
@@ -32,17 +32,17 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-// const Item = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 220px;
-//   width: 90%;
-//   // background-color: #00008b;
-//   color: #fff;
-//   // margin: 0 15px;
-//   font-size: 4em;
-// `;
+const Item = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  width: 90%;
+  // background-color: #00008b;
+  color: #fff;
+  // margin: 0 15px;
+  font-size: 4em;
+`;
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
   { width: 550, itemsToShow: 2 },
@@ -130,7 +130,7 @@ const Notification = () => {
           >
             <Carousel breakPoints={breakPoints}>
               {onGoingRecruitData.map((recruits) => (
-                <div key={recruits._id}>
+                <Item key={recruits._id}>
                   <Card sx={{ display: "flex", width: 350, height: 250 }}>
                     <CardContent sx={{ flex: "1 0 auto" }}>
                       <Stack spacing={1}>
@@ -195,7 +195,7 @@ const Notification = () => {
                       image={recruits?.team?.teamPhoto}
                     />
                   </Card>
-                </div>
+                </Item>
               ))}
             </Carousel>
           </div>
