@@ -8,7 +8,7 @@ export default defineConfig({
     port:4000,
     proxy:{
       "/api":{
-        target:import.meta.env.VITE_APP_SERVER_URL,
+        target:"https://esportsbackend-7ask.onrender.com",
         changeOrigin:true
       }
     }
