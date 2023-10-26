@@ -2,7 +2,9 @@
 // import { adminApiSlice } from "./adminApiSlice";
 import { apiSlice } from "../user/apiSlice";
 // Define the base URL for user-related API endpoints
-const USERS_URL = "/api/player";
+
+const SERVER_URL = `${import.meta.env.VITE_API_SERVER_URL}/api/player`
+
 
 // Create a user API slice by injecting endpoints
 export const playerApi = apiSlice.injectEndpoints({
@@ -12,7 +14,7 @@ export const playerApi = apiSlice.injectEndpoints({
         console.log("nithin");
         console.log(data.get("title"));
         return {
-          url: `${USERS_URL}/createLive`,
+          url: `${SERVER_URL}/createLive`,
           method: "POST",
           body: data,
         };
@@ -20,7 +22,7 @@ export const playerApi = apiSlice.injectEndpoints({
     }),
     deleteLive: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/live?room_id=${data.room_id}`,
+        url: `${SERVER_URL}/live?room_id=${data.room_id}`,
         method: "DELETE",
       }),
     }),

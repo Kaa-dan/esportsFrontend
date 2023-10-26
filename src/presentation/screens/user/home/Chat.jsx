@@ -13,7 +13,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useState, useEffect, useRef, useMemo } from "react";
 import io from "socket.io-client";
 import { useSelector } from "react-redux";
-const socket = io("https://esportsbackend-7ask.onrender.com");
+const socket = io(import.meta.env.VITE_API_SERVER_URL);
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import { useGetMessageMutation } from "../../../../application/slice/user/userApiSlice";
 

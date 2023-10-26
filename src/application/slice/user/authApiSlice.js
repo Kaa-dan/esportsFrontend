@@ -2,7 +2,7 @@
 import { apiSlice } from "./apiSlice";
 
 // Define the base URL for user-related API endpoints
-const USERS_URL = "/api/user";
+const SERVER_URL = `${import.meta.env.VITE_API_SERVER_URL}/api/user`;
 
 // Create a user API slice by injecting endpoints
 export const authApiSlice = apiSlice.injectEndpoints({
@@ -10,7 +10,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     // Define a login mutation endpoint
     login: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/login`,
+        url: `${SERVER_URL}/login`,
         method: "POST",
         body: data,
       }),
@@ -18,7 +18,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     // Define a logout mutation endpoint
     logout: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/logout`,
+        url: `${SERVER_URL}/logout`,
         method: "POST",
         body: data,
       }),
@@ -26,7 +26,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     // Define a register mutation endpoint
     register: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/register`,
+        url: `${SERVER_URL}/register`,
         method: "POST",
         body: data,
       }),
@@ -34,7 +34,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     // Define an OTP registration mutation endpoint
     otpRegister: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/sentOtp`,
+        url: `${SERVER_URL}/sentOtp`,
         method: "POST",
         body: data,
       }),
@@ -42,7 +42,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     // Define an OTP for forgot password mutation endpoint
     otpForgotPassword: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/sentOtpForgotpassword`,
+        url: `${SERVER_URL}/sentOtpForgotpassword`,
         method: "POST",
         body: data,
       }),
@@ -50,7 +50,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
     // Define an update password mutation endpoint
     updatePassword: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/updatePassword`,
+        url: `${SERVER_URL}/updatePassword`,
         method: "PATCH",
         body: data,
       }),
@@ -58,12 +58,11 @@ export const authApiSlice = apiSlice.injectEndpoints({
     //Google Authentication for login and register
     googleAuth: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/google-auth`,
+        url: ` ${SERVER_URL}/google-auth`,
         method: "POST",
         body: data,
       }),
     }),
-
   }),
 });
 
@@ -76,5 +75,4 @@ export const {
   useOtpForgotPasswordMutation, // Hook for the OTP for forgot password mutation
   useUpdatePasswordMutation, // Hook for the update password mutation
   useGoogleAuthMutation, //Hook for google login and register
-
 } = authApiSlice;

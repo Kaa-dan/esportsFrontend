@@ -2,7 +2,7 @@
 import { apiSlice } from "./apiSlice";
 
 // Define the base URL for user-related API endpoints
-const USERS_URL = "/api/user";
+const SERVER_URL = `${import.meta.env.VITE_API_SERVER_URL}/api/user`
 
 // Create a user API slice by injecting endpoints
 export const userApiSlice = apiSlice.injectEndpoints({
@@ -11,7 +11,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
     updateProfile: builder.mutation({
       query: (data) => {
         return {
-          url: `${USERS_URL}/profile`,
+          url: `${SERVER_URL}/profile`,
           method: "POST",
           body: data,
         };
@@ -19,7 +19,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
     }),
     acceptRecruitment: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/accept-recruit`,
+        url: `${SERVER_URL}/accept-recruit`,
         method: "PATCH",
         body: data,
       }),
@@ -28,7 +28,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
       query: (data) => {
         console.log("abhirami");
         return {
-          url: `${USERS_URL}/getStreams`,
+          url: `${SERVER_URL}/getStreams`,
           method: "GET",
           body: data,
         };
@@ -36,21 +36,21 @@ export const userApiSlice = apiSlice.injectEndpoints({
     }),
     getProfile: builder.mutation({
       query: (data) => ({
-        url: `${USERS_URL}/profile`,
+        url: `${SERVER_URL}/profile`,
         method: "PATCH",
         body: data,
       }),
     }),
     getMessage: builder.mutation({
       query: (data) => ({
-        url: `/api/message`,
+        url: `http://localhost:5000/api/message`,
         method: "GET",
       }),
     }),
     getSchedules: builder.mutation({
       query: (data) => {
         
-        return { url: `${USERS_URL}/schedule`,
+        return { url: `${SERVER_URL}/schedule`,
          method: "GET" };
       },
     }),

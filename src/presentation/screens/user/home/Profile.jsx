@@ -1,4 +1,3 @@
-import AccountProfile from "../../../components/user/dashboard/profile";
 import AccountProfileDetails from "../../../components/user/dashboard/profile2";
 import profilebg from "../../../../assets/user/profile/profilebg.gif";
 import { Box, Container, Stack, Unstable_Grid2 as Grid } from "@mui/material";
