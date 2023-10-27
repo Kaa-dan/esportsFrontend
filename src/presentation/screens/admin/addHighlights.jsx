@@ -76,7 +76,7 @@ const AddHighlights = () => {
       console.log(error.message);
     }
   };
-
+   console.log("nithin")
   //delete highlight handler
   const deleteHighlightHandler = async (id) => {
     try {
