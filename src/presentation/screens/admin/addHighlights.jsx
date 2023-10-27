@@ -2,11 +2,9 @@ import {
   Avatar,
   Box,
   Button,
-
   CircularProgress,
   Container,
   Divider,
-
   LinearProgress,
   Modal,
   Paper,
@@ -49,7 +47,7 @@ const AddHighlights = () => {
   const { user } = useSelector((state) => state.auth);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
-  const [rowsPerPage, setRowsPerPage] = useState(3);
+  const [rowsPerPage, setRowsPerPage] = useState(6);
   const [open, setOpen] = useState(false);
   const [uploadingVideo, setUploadingVideo] = useState("");
   const [videoUrl, setVideoUrl] = useState(null);

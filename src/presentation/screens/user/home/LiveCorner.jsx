@@ -16,47 +16,24 @@ import { useGetHighlightMutation } from "../../../../application/slice/admin/adm
 
 import { useGetStreamsMutation } from "../../../../application/slice/user/userApiSlice";
 import { Box, Stack } from "@mui/system";
-import VideoPlayer from "../../../components/user/dashboard/VideoPlayer";
-import CustomPagination from "../../../components/user/dashboard/Pagination";
 const LiveCorner = () => {
-  const [page, setPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(3);
-  const [highlightData, setHighlightData] = useState([]);
   const navigate = useNavigate();
   const [getStreamApi, { isLoading }] = useGetStreamsMutation();
   const [streams, setStreams] = useState([]);
-  const [getHighlightApi, { isLoading: highlightLoading }] =
-    useGetHighlightMutation();
-  const [query, setQuery] = useState("");
+
   const getStreamHandler = async () => {
     const responce = await getStreamApi();
 
     setStreams(responce.data.data);
   };
-  const getHighlightHandler = async () => {
-    try {
-      const responce = await getHighlightApi({ query });
-      console.log(responce);
-      setHighlightData(responce.data.data);
-    } catch (error) {
-      dyncamicToast(error?.message);
-    }
-  };
 
-  const indexOfLastData = page * rowsPerPage;
-  const indexOfFirstData = indexOfLastData - rowsPerPage;
-  const currentData = highlightData.slice(indexOfFirstData, indexOfLastData);
-  const onPageChange = (pageNumber) => {
-    setPage(pageNumber);
-  };
   useEffect(() => {
     getStreamHandler();
-    getHighlightHandler();
   }, []);
 
   return (
     <>
-      {isLoading || highlightLoading ? (
+      {isLoading ? (
         <div
           style={{
             display: "flex",
@@ -73,15 +50,19 @@ const LiveCorner = () => {
           <Stack spacing={3} sx={{ m: 4 }}>
             <Grid spacing={3} container>
               {streams.length <= 0 ? (
-                <h1
+                <div
                   style={{
                     color: "red",
                     fontSize: "24px",
                     textAlign: "center",
+                    height:"80vh",
+                    display:"flex",
+                    alignItems:"center",
+                  
                   }}
                 >
-                  No one is live right now
-                </h1>
+                  <h2>Opps..! No one is live right now</h2> 
+                </div>
               ) : null}
               {streams.map((str) =>
                 isLoading ? (
@@ -121,47 +102,7 @@ const LiveCorner = () => {
               )}
             </Grid>
             <Divider />
-            <Grid container spacing={3} direction="row">
-              {currentData.map((data) => {
-                return (
-                  <Grid lg={4} key={data._id} item>
-                    <Card sx={{ maxWidth: 345, height: "35vh" }}>
-                      <VideoPlayer videoUrl={data?.video} />
-                      <Stack
-                        direction="row"
-                        justifyContent="space-between"
-                        sx={{
-                          padding: "10px",
-                          borderRadius: "5px",
-                        }}
-                      >
-                        <span
-                          sx={{
-                            fontWeight: "bold",
-                            color: "#333",
-                          }}
-                        >
-                          {data?.discription}
-                        </span>
-                        <span
-                          sx={{
-                            color: "#666",
-                          }}
-                        >
-                          {new Date(data?.timestamp).toLocaleDateString()}
-                        </span>
-                      </Stack>
-                    </Card>
-                  </Grid>
-                );
-              })}
-            </Grid>
           </Stack>
-          <CustomPagination
-            currentPage={page}
-            totalPages={Math.ceil(highlightData.length / rowsPerPage)}
-            onPageChange={onPageChange}
-          />
         </>
       )}
     </>

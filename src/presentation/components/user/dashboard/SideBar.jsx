@@ -17,11 +17,14 @@ import {
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import { useLocation } from "react-router-dom";
+//importing themes
 
+import { darkTheme, userTheme } from "../../../../theme";
+import { ThemeProvider } from "@mui/material/styles";
 // mui icons
 
 import LiveTvIcon from "@mui/icons-material/LiveTv";
-
+import SlowMotionVideoIcon from "@mui/icons-material/SlowMotionVideo";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 
@@ -43,6 +46,7 @@ import LiveCorner from "../../../screens/user/home/LiveCorner";
 import ChatUI from "../../../screens/user/home/Chat";
 import PlayerView from "../../../screens/user/home/PlayerView";
 import SchedulesUser from "../../../screens/user/home/SchedulesUser";
+import HighlightViewUser from "../../../screens/user/home/HighlightViewUser";
 // custom player component
 import LiveSetup from "../../../screens/player/LiveSetup";
 import Live from "../../../screens/player/Live";
@@ -169,20 +173,26 @@ const SideBar = ({ open, setOpen }) => {
           link: "schedule-user",
           component: <SchedulesUser />,
         },
+        {
+          title: "Highlight",
+          icon: <SlowMotionVideoIcon />,
+          link: "view-highligh",
+          component: <HighlightViewUser />,
+        },
       ]);
     } else if (user.role === "admin") {
       list = useMemo(() => [
-        {
-          title: "Highlight",
-          icon: <OndemandVideoIcon />,
-          link: "highlight",
-          component: <AddHighlight />,
-        },
         {
           title: "Fans",
           icon: <PeopleOutlineIcon />,
           link: "fans",
           component: <Fans />,
+        },
+        {
+          title: "Highlight",
+          icon: <OndemandVideoIcon />,
+          link: "highlight",
+          component: <AddHighlight />,
         },
         {
           title: "Players",
@@ -217,6 +227,12 @@ const SideBar = ({ open, setOpen }) => {
           icon: <DuoIcon />,
           link: "live-corner",
           component: <LiveCorner />,
+        },
+        {
+          title: "Highlight",
+          icon: <SlowMotionVideoIcon />,
+          link: "view-highligh",
+          component: <HighlightViewUser />,
         },
         {
           title: "Schedules",
@@ -261,93 +277,126 @@ const SideBar = ({ open, setOpen }) => {
 
   useEffect(() => {
     if (!user) {
-      console.log("nithinra js")
+      console.log("nithinra js");
       navigate("/auth/login");
     }
-  },[]);
+  }, []);
 
   return (
     <>
-      <Drawer
-        variant="permanent"
-        open={open}
-        PaperProps={{ sx: { height: "100vh" } }}
-        sx={{ border: "2px solid red" }}
-      >
-        <DrawerHeader
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            // justifyContent: "space-between",
-            // backgroundImage: `url(${banner})`,
-            // backgroundSize: "cover",
-
-            backgroundPosition: "center center",
-          }}
+      <ThemeProvider theme={darkTheme}>
+        <Drawer
+          variant="permanent"
+          open={open}
+          PaperProps={{ sx: { height: "100vh" } }}
+          sx={{ border: "2px solid red" }}
         >
-          <IconButton onClick={() => setOpen(!open)}>
-            <MenuOpenTwoToneIcon />
-          </IconButton>
-        </DrawerHeader>
+          <DrawerHeader
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              // justifyContent: "space-between",
+              // backgroundImage: `url(${banner})`,
+              // backgroundSize: "cover",
 
-        <Box sx={{ mx: "auto", mt: 1, mb: 2 }}>
-          <Tooltip>
-            <Avatar
-              onClick={profileOpenHandler}
-              src={user?.profilePhoto}
-              {...(open && { sx: { width: 100, height: 100 } })}
-            />
-          </Tooltip>
-          <div>
-            <Modal
-              open={profileOpen}
-              onClose={profileCloseHandler}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                <Profile />
-              </Box>
-            </Modal>
-          </div>
-        </Box>
+              backgroundPosition: "center center",
+            }}
+          >
+            <IconButton onClick={() => setOpen(!open)}>
+              <MenuOpenTwoToneIcon />
+            </IconButton>
+          </DrawerHeader>
 
-        <Box sx={{ textAlign: "center", mb: 3 }}>
-          {open && (
-            <Typography
-              sx={{ fontWeight: "bold", fontSize: "1.5rem", color: "#a359b0" }}
-            >
-              {user ? user.name : null}
-            </Typography>
-          )}
-        </Box>
+          <Box sx={{ mx: "auto", mt: 1, mb: 2 }}>
+            <Tooltip>
+              <Avatar
+                onClick={profileOpenHandler}
+                src={user?.profilePhoto}
+                {...(open && { sx: { width: 100, height: 100 } })}
+              />
+            </Tooltip>
+            <div>
+              <Modal
+                open={profileOpen}
+                onClose={profileCloseHandler}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Profile />
+                </Box>
+              </Modal>
+            </div>
+          </Box>
 
-        <Divider />
-        <List>
-          {list.map((item, index) => (
-            <ListItem
-              key={index}
-              disablePadding
-              sx={{
-                display: "block",
-                mt: 1,
-                mb: 1,
-                "&:hover": {
-                  backgroundColor: "#6e43a3",
-                },
-                backgroundColor:
-                  location.pathname == `/${item.link}` ? "#6e43a3" : "",
-              }}
-            >
-              {console.log(location.pathname)}
-              {console.log(item.link)}
+          <Box sx={{ textAlign: "center", mb: 3 }}>
+            {open && (
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: "1.5rem",
+                  color: "#a359b0",
+                }}
+              >
+                {user ? user.name : null}
+              </Typography>
+            )}
+          </Box>
+
+          <Divider />
+          <List>
+            {list.map((item, index) => (
+              <ListItem
+                key={index}
+                disablePadding
+                sx={{
+                  display: "block",
+                  mt: 1,
+                  mb: 1,
+                  "&:hover": {
+                    backgroundColor: "#6e43a3",
+                  },
+                  backgroundColor:
+                    location.pathname == `/${item.link}` ? "#6e43a3" : "",
+                }}
+              >
+                {console.log(location.pathname)}
+                {console.log(item.link)}
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                  onClick={() => navigate(item.link)}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={item.title}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <List>
+            <Divider />
+            <ListItem disablePadding sx={{ display: "block" }}>
               <ListItemButton
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
                   px: 2.5,
                 }}
-                onClick={() => navigate(item.link)}
+                onClick={logOutHandler}
               >
                 <ListItemIcon
                   sx={{
@@ -356,59 +405,39 @@ const SideBar = ({ open, setOpen }) => {
                     justifyContent: "center",
                   }}
                 >
-                  {item.icon}
+                  <LogoutIcon />
                 </ListItemIcon>
                 <ListItemText
-                  primary={item.title}
+                  primary={"Logout"}
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
             </ListItem>
-          ))}
-        </List>
-        <List>
+          </List>
           <Divider />
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-              onClick={logOutHandler}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                <LogoutIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Logout"} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        </List>
-        <Divider />
-      </Drawer>
+        </Drawer>
 
-      <Container
-        sx={{
-          position: "relative",
-          backgroundColor: "rgba(51, 14, 98, 0.4)",
-          height: "80vh",
-          mt: 14,
-        }}
-      >
-        {/* Rendering components based on routes */}
-        <Routes>
-          {list.map((item) => (
-            <Route key={item?.link} path={item?.link} element={item?.component} />
-          ))}
-          <Route path={"/stream"} element={<Live />} />
-        </Routes>
-      </Container>
+        <Container
+          sx={{
+            position: "relative",
+            backgroundColor: "rgba(51, 14, 98, 0.4)",
+            height: "80vh",
+            mt: 14,
+          }}
+        >
+          {/* Rendering components based on routes */}
+          <Routes>
+            {list.map((item) => (
+              <Route
+                key={item?.link}
+                path={item?.link}
+                element={item?.component}
+              />
+            ))}
+            <Route path={"/stream"} element={<Live />} />
+          </Routes>
+        </Container>
+      </ThemeProvider>
     </>
   );
 };

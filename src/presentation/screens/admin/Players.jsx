@@ -65,6 +65,7 @@ const Players = () => {
   const demotePlayerHandler = async (playerId) => {
     try {
       const responce = await demotePlayerApi({ playerId });
+      getPlayerHandler();
     } catch (error) {
       dyncamicToast(error?.message);
     }
@@ -158,6 +159,12 @@ const Players = () => {
                           <TableCell>{team?.salary} $</TableCell>
                           <TableCell>
                             <Button
+                              sx={{
+                                color: "white",
+                                backgroundColor: "#4a148c",
+                                borderRadius: "10px",
+                                padding: "10px",
+                              }}
                               onClick={() => {
                                 demotePlayerHandler(team?._id);
                               }}

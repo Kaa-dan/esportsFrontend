@@ -17,4 +17,22 @@ const darkTheme = createTheme({
   props: {},
 });
 
-export default darkTheme;
+const userTheme = createTheme({
+  palette: {
+    // mode: "dark",
+    // divider: "#00a0b2",
+    text: {
+      // primary: '#33eaff',
+    },
+    background: {
+      // default: '#330e62',
+      paper: "#330e62",
+    },
+  },
+  props: {},
+})
+
+export {
+  darkTheme,
+  userTheme
+} 
