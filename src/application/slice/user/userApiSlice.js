@@ -2,7 +2,7 @@
 import { apiSlice } from "./apiSlice";
 
 // Define the base URL for user-related API endpoints
-const SERVER_URL = `${import.meta.env.VITE_API_SERVER_URL}/api/user`
+const SERVER_URL = `${import.meta.env.VITE_API_SERVER_URL}/api/user`;
 
 // Create a user API slice by injecting endpoints
 export const userApiSlice = apiSlice.injectEndpoints({
@@ -43,15 +43,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
     }),
     getMessage: builder.mutation({
       query: (data) => ({
-        url: `http://localhost:5000/api/message`,
+        url: `${import.meta.env.VITE_API_SERVER_URL}/api/message`,
         method: "GET",
       }),
     }),
     getSchedules: builder.mutation({
       query: (data) => {
-        
-        return { url: `${SERVER_URL}/schedule`,
-         method: "GET" };
+        return { url: `${SERVER_URL}/schedule`, method: "GET" };
       },
     }),
   }),
@@ -64,5 +62,5 @@ export const {
   useGetStreamsMutation,
   useGetProfileMutation,
   useGetMessageMutation,
-  useGetSchedulesMutation
+  useGetSchedulesMutation,
 } = userApiSlice;
