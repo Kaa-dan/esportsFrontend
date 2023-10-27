@@ -32,8 +32,9 @@ export default function Live() {
   };
 
   const myMeeting = async (element) => {
-    const appID = 1376445846;
-    const serverSecret = "acd372797f913dadbb734a88cf62f3e3";
+    const appID = Number(import.meta.env.VITE_API_ZEGOCLOUD_APPID);
+    console.log(appID)
+    const serverSecret = import.meta.env.VITE_API_ZEGOCLOUD_SERVER_SECRET;
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appID,
       serverSecret,
@@ -82,9 +83,9 @@ export default function Live() {
       },
     });
   };
-  useEffect(()=>{
-    myMeeting()
-  })
+  useEffect(() => {
+    myMeeting();
+  });
 
   return (
     <>
@@ -92,8 +93,8 @@ export default function Live() {
         style={{
           height: "85vh",
           width: "80vw",
-          marginTop:"75px",
-          marginLeft:-23
+          marginTop: "75px",
+          marginLeft: -23,
         }}
         ref={myMeeting}
       />
