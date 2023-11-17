@@ -28,6 +28,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <Pagination
+    
       count={totalPages}
       page={currentPage}
       onChange={(event, page) => onPageChange(page)}
@@ -36,6 +37,7 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
       color="primary"
       renderItem={(item) => (
         <PaginationItem
+        sx={{height:"20px"}}
           component="li"
           {...item}
           onClick={() => onPageChange(item.page)}

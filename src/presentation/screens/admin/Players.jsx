@@ -65,6 +65,7 @@ const Players = () => {
   const demotePlayerHandler = async (playerId) => {
     try {
       const responce = await demotePlayerApi({ playerId });
+      console.log(responce);
       getPlayerHandler();
     } catch (error) {
       dyncamicToast(error?.message);

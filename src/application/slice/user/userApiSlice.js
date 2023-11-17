@@ -18,11 +18,14 @@ export const userApiSlice = apiSlice.injectEndpoints({
       },
     }),
     acceptRecruitment: builder.mutation({
-      query: (data) => ({
-        url: `${SERVER_URL}/accept-recruit`,
-        method: "PATCH",
-        body: data,
-      }),
+      query: (data) => {
+        console.log(data)
+        return {
+          url: `${SERVER_URL}/accept-recruit`,
+          method: "PATCH",
+          body: data,
+        };
+      },
     }),
     getStreams: builder.mutation({
       query: (data) => {
@@ -52,9 +55,17 @@ export const userApiSlice = apiSlice.injectEndpoints({
         return { url: `${SERVER_URL}/schedule`, method: "GET" };
       },
     }),
+    authMiddleware: builder.mutation({
+      query: (data) => {
+        console.log(data);
+        return {
+          url: `${SERVER_URL}/auth?ID=${data.id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
-
 
 // Export hooks for each mutation endpoint for use in components
 export const {
@@ -64,4 +75,5 @@ export const {
   useGetProfileMutation,
   useGetMessageMutation,
   useGetSchedulesMutation,
+  useAuthMiddlewareMutation,
 } = userApiSlice;

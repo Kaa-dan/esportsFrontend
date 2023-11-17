@@ -73,15 +73,23 @@ const Notification = () => {
   };
 
   const handleUpload = async () => {
+    console.log("nithin");
+    console.log(open);
     try {
-      if (selectedVideo && open._id) {
-        const formData = new FormData();
-        formData.append("file", selectedVideo);
-        formData.append("recruitMentID", open._id);
-        formData.append("user_id", user._id);
-        formData.append("teamId", open.team._id);
+      // selectedVideo &&
 
-        const responce = await acceptRecruitmentApi(formData);
+      if (open._id) {
+        const formData = new FormData();
+        // formData.append("file", selectedVideo);
+        // formData.append("recruitMentID", open._id);
+        // formData.append("user_id", user._id);
+        // formData.append("teamId", open.team._id);
+
+        const responce = await acceptRecruitmentApi({
+          recruitMentID: open._id,
+          user_id: user._id,
+          teamId: open.team._id,
+        });
 
         setOpen(false);
         onGoingRecruitHandler();
@@ -210,11 +218,11 @@ const Notification = () => {
       >
         <Box sx={style}>
           <Stack spacing={3}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Upload a selectedVideo of your gameplay
-            </Typography>
+            {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+              Accept recruitment?
+            </Typography> */}
 
-            <FormControl>
+            {/* <FormControl>
               <input
                 type="file"
                 id="vde"
@@ -230,12 +238,20 @@ const Notification = () => {
               >
                 Upload File
               </Button>
-            </FormControl>
+            </FormControl> */}
           </Stack>
           {acceptRecruitmentLoading ? (
             <CircularProgress size={20} />
           ) : (
-            <Button onClick={handleUpload}>submit</Button>
+            <Button
+              sx={{ width: "100%" }}
+              variant="outlined"
+              onClick={() => {
+                handleUpload();
+              }}
+            >
+              Accept recruitment
+            </Button>
           )}
         </Box>
       </Modal>

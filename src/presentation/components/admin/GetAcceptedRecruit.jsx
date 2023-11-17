@@ -34,7 +34,7 @@ const style = {
   p: 7,
   borderRadius: "10px",
 };
-const Head = ["No", "Name", "Team", "   ", "End Date", "Video", "", " "];
+const Head = ["No", "Name", "Team", "   ", "End Date", "", " "];
 const Recruit = ({ query, refresh, setRefresh }) => {
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(1);
@@ -49,8 +49,9 @@ const Recruit = ({ query, refresh, setRefresh }) => {
 
   // Function to get accepted recruitment data
   const getAcceptedRecruitmentHandler = async () => {
+    console.log("getAccepted ");
     const responce = await getAcceptedRecruitmentApi({ query });
-    console.log(responce);
+    console.log("nithin",responce);
     setTableData(responce.data.data);
   };
 
@@ -104,7 +105,7 @@ const Recruit = ({ query, refresh, setRefresh }) => {
               <>
                 <TableBody>
                   {currentData.map((loopData, index) => {
-                    console.log(loopData);
+                    console.log(loopData)
                     return (
                       <TableRow key={index}>
                         <TableCell>{index + 1}</TableCell>
@@ -119,13 +120,13 @@ const Recruit = ({ query, refresh, setRefresh }) => {
                         </TableCell>
                         <TableCell>
                           {/* <a href={loopData?.video}> */}
-                          <Button
+                          {/* <Button
                             onClick={() => setOpen(loopData?.video)}
                             size="small"
                             startIcon={<NotStartedIcon />}
                           >
                             View Gameplay
-                          </Button>
+                          </Button> */}
                           {/* </a> */}
                           {/* <VideoPlayer videoUrl={loopData?.video} /> */}
                         </TableCell>

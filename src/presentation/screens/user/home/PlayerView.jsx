@@ -83,66 +83,64 @@ const PlayerView = () => {
 
   return (
     <>
-       
-        <>
-          {" "}
-          <div>
-            <Box
-              sx={{
-                mb: 2,
-                mt: 3,
+      <>
+        {" "}
+        <div>
+          <Box
+            sx={{
+              mb: 2,
+              mt: 3,
+            }}
+          >
+            <Grid container spacing={3}>
+              <Grid item>
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Team</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={filterValue}
+                      onChange={(e) => setFilterValue(e.target.value)}
+                    >
+                      <MenuItem key="all" value="all">
+                        all
+                      </MenuItem>
+                      {team.map((value) => (
+                        <MenuItem key={value._id} value={value._id}>
+                          {value.team}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Grid>
+              <Grid item>
+                <TextField
+                  variant="outlined"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  style={{ flex: 1 }}
+                  label="Search"
+                />
+              </Grid>
+            </Grid>
+          </Box>
+
+          {isLoading ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "62vh",
               }}
             >
-              <Grid container spacing={3}>
-                <Grid item>
-                  <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">
-                        Team
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={filterValue}
-                        onChange={(e) => setFilterValue(e.target.value)}
-                      >
-                        <MenuItem key="all" value="all">
-                          all
-                        </MenuItem>
-                        {team.map((value) => (
-                          <MenuItem key={value._id} value={value._id}>
-                            {value.team}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Box>
-                </Grid>
-                <Grid item>
-                  <TextField
-                    variant="outlined"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    style={{ flex: 1 }}
-                    label="Search"
-                  />
-                </Grid>
-              </Grid>
-            </Box>
-
-            {isLoading ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "70vh",
-                }}
-              >
-                <CircularProgress style={{ color: "#6e43a3" }} />
-              </div>
-            ) : (
-              <Grid spacing={2} container>
+              <CircularProgress style={{ color: "#6e43a3" }} />
+            </div>
+          ) : (
+            <>
+              <Grid sx={{ height: "60vh" }} spacing={2} container>
                 {playerData.map((data) => (
                   <Grid item>
                     <Card sx={{ display: "flex", width: 350, height: 200 }}>
@@ -184,27 +182,27 @@ const PlayerView = () => {
                   </Grid>
                 ))}
               </Grid>
+            </>
+          )}
+        </div>
+        <Box>
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={(event, page) => handlePageChange(page)}
+            shape="rounded"
+            size="large"
+            color="primary"
+            renderItem={(item) => (
+              <PaginationItem
+                component="li"
+                {...item}
+                onClick={() => handlePageChange(item.page)}
+              />
             )}
-          </div>
-          <Box sx={{ position: "fixed", mt: 25 }}>
-            <Pagination
-              count={totalPages}
-              page={currentPage}
-              onChange={(event, page) => handlePageChange(page)}
-              shape="rounded"
-              size="large"
-              color="primary"
-              renderItem={(item) => (
-                <PaginationItem
-                  component="li"
-                  {...item}
-                  onClick={() => handlePageChange(item.page)}
-                />
-              )}
-            />
-          </Box>
-        </>
-      
+          />
+        </Box>
+      </>
     </>
   );
 };

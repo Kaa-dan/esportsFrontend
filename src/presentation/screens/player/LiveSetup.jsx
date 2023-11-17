@@ -1,4 +1,11 @@
-import { Button, Stack, TextField, Paper, Grid } from "@mui/material";
+import {
+  Button,
+  Stack,
+  TextField,
+  Paper,
+  Grid,
+  LinearProgress,
+} from "@mui/material";
 import { useState } from "react";
 import { useCreateLiveMutation } from "../../../application/slice/player/playerApiSlice";
 import { useSelector } from "react-redux";
@@ -10,6 +17,7 @@ const LiveSetup = () => {
   const [croppedImage, setCroppedImage] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
   const { user } = useSelector((state) => state.auth);
@@ -19,6 +27,7 @@ const LiveSetup = () => {
   const [description, setDiscription] = useState(null);
   const [createLive] = useCreateLiveMutation();
   const startLiveHandler = async () => {
+    setLoading(true);
     const formData = new FormData();
     formData.append("playerId", user._id);
     formData.append("title", title);
@@ -31,8 +40,11 @@ const LiveSetup = () => {
       console.log(response);
       if (response) {
         navigate(`/stream?id=${user._id}`);
+      } else {
+        setLoading(false);
       }
     } catch (error) {
+      setLoading(false);
       console.error(error);
     }
   };
@@ -62,8 +74,7 @@ const LiveSetup = () => {
   };
   return (
     <>
-   
-   {/* <video
+      {/* <video
         autoPlay
         loop
         muted
@@ -83,7 +94,6 @@ const LiveSetup = () => {
         spacing={3}
         container
       >
-         
         <Grid sx={{ mt: 4 }} item lg={4}>
           <Stack spacing={2}>
             <TextField
@@ -125,13 +135,19 @@ const LiveSetup = () => {
             >
               Upload thumpnail
             </Button>
-            <Button
-              onClick={startLiveHandler}
-              variant="contained"
-              color="primary"
-            >
-              Start Live
-            </Button>
+            {loading ? (
+              <>
+                <LinearProgress />
+              </>
+            ) : (
+              <Button
+                onClick={startLiveHandler}
+                variant="contained"
+                color="primary"
+              >
+                Start Live
+              </Button>
+            )}
           </Stack>
         </Grid>
         <Grid item lg={4}>
@@ -139,7 +155,6 @@ const LiveSetup = () => {
             <div
               style={{
                 marginTop: "20px",
-               
               }}
             >
               <h4>Thumbnail Preview:</h4>
@@ -150,7 +165,8 @@ const LiveSetup = () => {
                   height: "200px",
                 }}
               >
-                <Cropper style={{ backgroundColor: "rgba(51, 14, 98, 0.5)",}}
+                <Cropper
+                  style={{ backgroundColor: "rgba(51, 14, 98, 0.5)" }}
                   image={thumbnailPreview}
                   crop={crop}
                   zoom={zoom}

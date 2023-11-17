@@ -76,7 +76,7 @@ const AddHighlights = () => {
       console.log(error.message);
     }
   };
-   console.log("nithin")
+  console.log("nithin");
   //delete highlight handler
   const deleteHighlightHandler = async (id) => {
     try {
@@ -199,14 +199,13 @@ const AddHighlights = () => {
             </Table>
           </TableContainer>
         </Paper>
-      </Container>
-      <Box>
         <CustomPagination
           currentPage={page}
           totalPages={Math.ceil(highlightData.length / rowsPerPage)}
           onPageChange={onPageChange}
         />
-      </Box>
+      </Container>
+
       <Modal
         open={open}
         onClose={() => setOpen(false)}

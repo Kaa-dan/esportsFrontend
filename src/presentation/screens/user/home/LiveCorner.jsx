@@ -53,15 +53,15 @@ const LiveCorner = () => {
                 <div
                   style={{
                     color: "red",
-                    fontSize: "24px",
+                    fontSize: "18px",
                     textAlign: "center",
-                    height:"80vh",
-                    display:"flex",
-                    alignItems:"center",
-                  
+                    height: "80vh",
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 400px",
                   }}
                 >
-                  <h2>Opps..! No one is live right now</h2> 
+                  <h2>No one is live right now</h2>
                 </div>
               ) : null}
               {streams.map((str) =>

@@ -66,7 +66,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useMemo } from "react";
-
+import { useAuthMiddlewareMutation } from "../../../../application/slice/user/userApiSlice";
+import dyncamicToast from "../form/DynamicToast";
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -137,6 +138,7 @@ const SideBar = ({ open, setOpen }) => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const location = useLocation();
+  const [authenticationApi] = useAuthMiddlewareMutation();
 
   console.log(user);
   let list = [];
@@ -282,6 +284,23 @@ const SideBar = ({ open, setOpen }) => {
     }
   }, []);
 
+  const authenticationHandler = async () => {
+    try {
+      const responce = await authenticationApi({ id: user._id });
+      console.log(responce.data.data.block);
+      if (responce.data.data.block === true) {
+        dyncamicToast("you had been blocked");
+        navigate("auth/login");
+      }
+      console.log("not blocked");
+    } catch (error) {
+      dyncamicToast("you had been blocked");
+    }
+  };
+  useEffect(() => {
+    authenticationHandler();
+  }, []);
+
   return (
     <>
       <ThemeProvider theme={darkTheme}>
@@ -359,6 +378,9 @@ const SideBar = ({ open, setOpen }) => {
                   backgroundColor:
                     location.pathname == `/${item.link}` ? "#6e43a3" : "",
                 }}
+                onClick={() => {
+                  authenticationHandler();
+                }}
               >
                 {console.log(location.pathname)}
                 {console.log(item.link)}
@@ -427,13 +449,19 @@ const SideBar = ({ open, setOpen }) => {
         >
           {/* Rendering components based on routes */}
           <Routes>
-            {list.map((item) => (
-              <Route
-                key={item?.link}
-                path={item?.link}
-                element={item?.component}
-              />
-            ))}
+            {list.map((item) => {
+              // authenticationHandler
+              return (
+                <Route
+                  key={item?.link}
+                  path={item?.link}
+                  element={item?.component}
+                  onClick={() => {
+                    authenticationHandler();
+                  }}
+                />
+              );
+            })}
             <Route path={"/stream"} element={<Live />} />
           </Routes>
         </Container>

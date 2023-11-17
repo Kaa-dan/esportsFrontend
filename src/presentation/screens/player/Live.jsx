@@ -91,8 +91,8 @@ export default function Live() {
     <>
       <div
         style={{
-          height: "85vh",
-          width: "80vw",
+          height: "80vh",
+          width: "90vw",
           marginTop: "75px",
           marginLeft: -23,
         }}
