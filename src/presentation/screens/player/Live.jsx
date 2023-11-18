@@ -26,10 +26,9 @@ export default function Live() {
       navigate("/live-corner");
     }
   };
-  const joinRoomHandler = () => {
-    // console.log("makriiii")
-    // window.location.reload();
-  };
+  // const joinRoomHandler = () => {
+   
+  // };
 
   const myMeeting = async (element) => {
     const appID = Number(import.meta.env.VITE_API_ZEGOCLOUD_APPID);
