@@ -65,7 +65,7 @@ const Login = () => {
       toast(message);
     } catch (err) {
       console.log(err);
-      toast(err?.data?.error);
+      // toast(err?.data?.error);
     }
   };
 
