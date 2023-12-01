@@ -55,6 +55,8 @@ const Recruit = ({ query, refresh, setRefresh }) => {
     setTableData(responce.data.data);
   };
 
+  console.log("success full")
+
   // Function to create a player from recruitment
   const createPlayerHandler = async (
     userId,
