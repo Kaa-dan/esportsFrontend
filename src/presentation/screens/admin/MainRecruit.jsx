@@ -37,6 +37,7 @@ const INITIAL_FORM_STATE = {
   salary: "",
   role: "",
 };
+console.log('nithin')
 
 // Form validation schema using Yup
 const FORM_VALIDATION = Yup.object().shape({
