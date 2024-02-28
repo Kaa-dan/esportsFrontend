@@ -100,6 +100,7 @@ const Recruit = () => {
   // useEffect(() => {
 
   // }, [open]);
+  console.log('nithin')
 
   return (
     <>
