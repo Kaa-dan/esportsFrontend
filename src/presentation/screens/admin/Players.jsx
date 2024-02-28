@@ -152,7 +152,7 @@ const Players = () => {
                   <TableBody>
                     {playerData.map((team, index) => {
                       return (
-                        <TableRow>
+                        <TableRow key={index}>
                           <TableCell>{index + 1}</TableCell>
                           <TableCell>{team?.userData[0]?.name}</TableCell>
                           <TableCell>{team?.teamData[0]?.team}</TableCell>

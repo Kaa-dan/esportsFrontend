@@ -141,7 +141,7 @@ const Recruit = ({ query, refresh }) => {
                           {" "}
                           <Avatar
                             alt="User Photo"
-                            src={loopData?.teamData[0].teamPhoto}
+                            src={loopData?.teamData[0]?.teamPhoto}
                           />
                           {loopData?.teamData[0]?.team}
                         </TableCell>
