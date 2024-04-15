@@ -44,7 +44,7 @@ const ChatUI = () => {
       const reader = new FileReader();
       reader.onloadend = () => {
         const imageData = reader.result;
-        socket.emit("sendImage", { imageData, userId: user._id });
+        socket.emit("sendImage", { imageData, userId: user?._id });
       };
       reader.readAsDataURL(file);
     }
@@ -65,8 +65,8 @@ const ChatUI = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (user._id && message) {
-      socket.emit("sendMessage", { message, userId: user._id });
+    if (user?._id && message) {
+      socket.emit("sendMessage", { message, userId: user?._id });
       setMessage("");
     }
   };
@@ -123,7 +123,7 @@ const ChatUI = () => {
                 sx={{
                   display: "flex",
                   justifyContent:
-                    user._id !== message.user._id ? "flex-start" : "flex-end",
+                    user?._id !== message?.user?._id ? "flex-start" : "flex-end",
                   mb: 2,
                 }}
                 key={index}
@@ -132,7 +132,7 @@ const ChatUI = () => {
                   sx={{
                     display: "flex",
                     flexDirection:
-                      user._id !== message.user._id ? "row" : "row-reverse",
+                      user?._id !== message?.user?._id ? "row" : "row-reverse",
                     alignItems: "center",
                   }}
                 >
@@ -141,22 +141,22 @@ const ChatUI = () => {
                     <Avatar
                       sx={{
                         bgcolor:
-                          user._id !== message.user._id
+                          user?._id !== message?.user?._id
                             ? "primary.main"
                             : "secondary.main",
                       }}
-                      src={`${message.user.profilePhoto}`}
+                      src={`${message?.user?.profilePhoto}`}
                     />
                     <Paper
                       variant="outlined"
                       sx={{
                         p: 2,
-                        ml: user._id !== message.user._id ? 1 : 0,
-                        mr: user._id !== message.user._id ? 0 : 1,
+                        ml: user._id !== message?.user?._id ? 1 : 0,
+                        mr: user._id !== message?.user?._id ? 0 : 1,
                         backgroundColor:
-                          user._id !== message.user._id ? "#631976" : "#a44fbb",
+                          user._id !== message?.user?._id ? "#631976" : "#a44fbb",
                         borderRadius:
-                          user._id !== message.user._id
+                          user._id !== message?.user?._id
                             ? "20px 20px 20px 5px"
                             : "20px 20px 5px 20px",
                       }}
