@@ -271,7 +271,7 @@ const SideBar = ({ open, setOpen }) => {
     try {
       await logoutApiCall({ id: user._id }).unwrap();
       dispatch(logout());
-      navigate("/auth/login");
+      navigate("/landing-page");
     } catch (err) {
       toast(err);
     }
@@ -280,7 +280,7 @@ const SideBar = ({ open, setOpen }) => {
   useEffect(() => {
     if (!user) {
       console.log("nithinra js");
-      navigate("/auth/login");
+      navigate("/landing-page");
     }
   }, []);
 

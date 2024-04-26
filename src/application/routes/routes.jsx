@@ -9,6 +9,7 @@ import RegisterOtp from "../../presentation/screens/user/auth/RegisterOtp";
 import ForgotPasswordOtp from "../../presentation/screens/user/auth/ForgotPasswordOtp";
 import ResetPassword from "../../presentation/screens/user/auth/ResetPassword";
 import Auth from "../../presentation/components/user/auth/Auth";
+import MainHome from "../../presentation/screens/user/home/MainHome";
 // import Users from "../../presentation/screens/admin/Users";\
 
 const MainRoutes = () => {
@@ -23,8 +24,9 @@ const MainRoutes = () => {
         <Route path="reset-password" element={<ResetPassword />} />
       </Route>
       <Route path="/admin/*" element={<HomePage />}></Route>
-     
-      <Route path="/*" element={<HomePage />}></Route>
+
+      <Route path="/" element={<HomePage />}></Route>
+      <Route path="/landing-page" element={<MainHome />}></Route>
     </Routes>
   );
 };
