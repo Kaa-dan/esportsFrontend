@@ -18,7 +18,7 @@ import ForgotPasswordOtp from "../../../screens/user/auth/ForgotPasswordOtp";
 import ResetPassword from "../../../screens/user/auth/ResetPassword";
 
 import VideogameAssetOutlinedIcon from "@mui/icons-material/VideogameAssetOutlined";
-import bgVideo from "../../../../assets/User/login/Login.mp4";
+// import bgVideo from "../../../../assets/User/login/Login.mp4";
 import avatar from "../../../../assets/user/login/logo.jpg";
 
 const Auth = ({ children }) => {
@@ -63,7 +63,7 @@ const Auth = ({ children }) => {
             zIndex: -1,
           }}
         >
-          <source src={bgVideo} type="video/mp4" />
+          {/* <source src={bgvideo2} type="video/mp4" /> */}
         </video>
 
         <Box
@@ -93,7 +93,7 @@ const Auth = ({ children }) => {
                   <Box>
                     <Avatar
                       sx={{
-                        ml: "35px",
+                        ml: "140px",
                         mb: "4px",
                         bgcolor: "#ffffff",
                       }}
@@ -102,7 +102,7 @@ const Auth = ({ children }) => {
                       <VideogameAssetOutlinedIcon />
                     </Avatar>{" "}
                     <Typography component="h1" variant="h4">
-                      Kaadan
+                      Progamers Syndicate
                     </Typography>
                   </Box>
                 </Box>
