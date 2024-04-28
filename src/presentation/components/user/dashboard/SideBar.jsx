@@ -16,7 +16,7 @@ import {
   Container,
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
-import { useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 //importing themes
 
 import { darkTheme, userTheme } from "../../../../theme";
@@ -448,13 +448,14 @@ const SideBar = ({ open, setOpen }) => {
           }}
         >
           {/* Rendering components based on routes */}
-          <Routes>
+          <Outlet/>
+          {/* <Routes>
             {list.map((item) => {
               // authenticationHandler
               return (
                 <Route
                   key={item?.link}
-                  path={item?.link}
+                  path={`item?.link`}
                   element={item?.component}
                   onClick={() => {
                     authenticationHandler();
@@ -463,7 +464,7 @@ const SideBar = ({ open, setOpen }) => {
               );
             })}
             <Route path={"/stream"} element={<Live />} />
-          </Routes>
+          </Routes> */}
         </Container>
       </ThemeProvider>
     </>
