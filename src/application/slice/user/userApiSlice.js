@@ -44,6 +44,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    
     getMessage: builder.mutation({
       query: (data) => ({
         url: `${import.meta.env.VITE_API_SERVER_URL}/api/message`,
@@ -61,6 +62,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         return {
           url: `${SERVER_URL}/auth?ID=${data.id}`,
           method: "GET",
+        
         };
       },
     }),

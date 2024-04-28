@@ -4,7 +4,6 @@ import {
   FormControl,
   Grid,
   InputLabel,
-  LinearProgress,
   List,
   ListItem,
   ListItemText,
@@ -32,6 +31,7 @@ const SchedulesUser = () => {
       dyncamicToast(error?.message);
     }
   };
+  
 
   useEffect(() => {
     getScheduledData();
