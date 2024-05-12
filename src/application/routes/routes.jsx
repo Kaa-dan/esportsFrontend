@@ -23,6 +23,7 @@ import Teams from "../../presentation/screens/admin/Teams";
 import ManageSchedules from "../../presentation/screens/admin/manageSchedules";
 import MainRecruit from "../../presentation/screens/admin/MainRecruit";
 import LiveSetup from "../../presentation/screens/player/LiveSetup";
+import Live from "../../presentation/screens/player/Live";
 // import Users from "../../presentation/screens/admin/Users";\
 
 const MainRoutes = () => {
@@ -49,11 +50,12 @@ const MainRoutes = () => {
         <Route path="/Highlight" element={<AddHighlights />} />
         <Route path="/player" element={<Players />} />
         <Route path="/teams" element={<Teams />} />
+        <Route path={"/stream"} element={<Live />} />
 
         <Route path="/recruit" element={<MainRecruit />} />
 
         <Route path="/schedules" element={<ManageSchedules />} />
-     
+
         <Route path="/go-live" element={<LiveSetup />} />
       </Route>
       <Route path="/landing-page" element={<MainHome />}></Route>

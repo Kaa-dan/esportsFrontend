@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
 import Imag from "../../../../assets/user/login/Login.mp4";
-import zIndex from "@mui/material/styles/zIndex";
+
 const HomePage = () => {
   return (
     <div style={{ color: "white", minHeight: "100vh" }}>
@@ -31,7 +31,7 @@ const HomePage = () => {
                   textDecoration: "none",
                 }}
               >
-                Progamer Syndicate
+                Pro palayers Syndicate
               </Link>
             </div>
             <div style={{ display: "flex" }}>
@@ -112,7 +112,7 @@ const HomePage = () => {
               marginBottom: "1rem",
             }}
           >
-            Welcome to Progamer Syndicate
+            Welcome to Pro Players Syndicate
           </h1>
           <p style={{ fontSize: "1.25rem", marginBottom: "2rem" }}>
             Manage your teams, players, matches, and more!
