@@ -15,6 +15,7 @@ import ProfileSecond from "./profile";
 import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
 import { useGetProfileMutation } from "../../../../application/slice/user/userApiSlice";
 import { useEffect, useState } from "react";
+const nithin = "nithin"
 const style = {
   position: "absolute",
   top: "50%",
