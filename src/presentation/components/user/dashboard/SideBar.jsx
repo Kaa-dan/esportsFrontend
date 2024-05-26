@@ -289,12 +289,12 @@ const SideBar = ({ open, setOpen }) => {
       const responce = await authenticationApi({ id: user._id });
       console.log(responce.data.data.block);
       if (responce.data.data.block === true) {
-        dyncamicToast("you had been blocked");
+        dyncamicToast("Please wait backend is loading ");
         navigate("auth/login");
       }
       console.log("not blocked");
     } catch (error) {
-      dyncamicToast("you had been blocked");
+      dyncamicToast("Please wait backend is loading ");
     }
   };
   useEffect(() => {
