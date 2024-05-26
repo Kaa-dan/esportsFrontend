@@ -94,13 +94,14 @@ const HighlightViewUser = () => {
               })}
             </Grid>
 
-            <CustomPagination
-            
-              currentPage={page}
-              totalPages={Math.ceil(highlightData.length / rowsPerPage)}
-              onPageChange={onPageChange}
-            />
+           
           </div>
+          <CustomPagination
+            
+            currentPage={page}
+            totalPages={Math.ceil(highlightData.length / rowsPerPage)}
+            onPageChange={onPageChange}
+          />
         </>
       )}
     </>

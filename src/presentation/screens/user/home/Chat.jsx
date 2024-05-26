@@ -233,8 +233,8 @@ const ChatUI = () => {
                 />
               </Grid>
 
-              <Grid item xs={1}>
-                <label htmlFor="upload-image">
+              
+                {/* <label htmlFor="upload-image">
                   <InsertPhotoIcon
                     sx={{
                       fontSize: 30,
@@ -242,14 +242,14 @@ const ChatUI = () => {
                       cursor: "pointer",
                     }}
                   />
-                </label>
-                <input
+                </label> */}
+                {/* <input
                   type="file"
                   id="upload-image"
                   onChange={handleImageUpload}
                   style={{ display: "none" }}
-                />
-              </Grid>
+                /> */}
+            
               <Grid item xs={2}>
                 <Button
                   fullWidth

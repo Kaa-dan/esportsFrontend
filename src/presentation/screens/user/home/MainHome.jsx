@@ -2,6 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
 import Imag from "../../../../assets/user/login/Login.mp4";
 
+const wrapperStyle = {
+  flexShrink: 0,
+  display: "flex",
+  alignItems: "center",
+  marginLeft: "20px",
+};
+
+const linkStyle = {
+  fontWeight: "bold",
+  fontSize: "2rem",
+  color: "rgba(180, 80, 220, 1)",
+
+  textDecoration: "none",
+  transition: "color 0.3s, text-decoration 0.3s", // Smooth
+};
+
+const linkHoverStyle = {
+  color: "white",
+  // Tomato color on hover
+  // textDecoration: "underline",
+};
 const HomePage = () => {
   return (
     <div style={{ color: "white", minHeight: "100vh" }}>
@@ -21,7 +42,7 @@ const HomePage = () => {
               height: "4rem",
             }}
           >
-            <div style={{ flexShrink: 0 }}>
+            {/* <div style={{ flexShrink: 0 }}>
               <Link
                 to="/"
                 style={{
@@ -33,9 +54,25 @@ const HomePage = () => {
               >
                 Pro palayers Syndicate
               </Link>
+            </div> */}
+            <div style={wrapperStyle}>
+              <Link
+                to="/"
+                style={linkStyle}
+                onMouseEnter={(e) => {
+                  e.target.style.color = linkHoverStyle.color;
+                  e.target.style.textDecoration = linkHoverStyle.textDecoration;
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = linkStyle.color;
+                  e.target.style.textDecoration = linkStyle.textDecoration;
+                }}
+              >
+                ProGamers
+              </Link>
             </div>
             <div style={{ display: "flex" }}>
-              <Link
+              {/* <Link
                 to="/auth/login"
                 style={{
                   color: "#CBD5E0",
@@ -44,8 +81,8 @@ const HomePage = () => {
                 }}
               >
                 Fans
-              </Link>
-              <Link
+              </Link> */}
+              {/* <Link
                 to="/auth/login"
                 style={{
                   color: "#CBD5E0",
@@ -54,16 +91,24 @@ const HomePage = () => {
                 }}
               >
                 Players
-              </Link>
+              </Link> */}
               <Link
                 to="/auth/login"
                 style={{
-                  color: "#CBD5E0",
+                  color: "rgba(180, 80, 220, 1)",
                   padding: "0.75rem",
                   textDecoration: "none",
                 }}
+                onMouseEnter={(e) => {
+                  e.target.style.color = linkHoverStyle.color;
+                  e.target.style.textDecoration = linkHoverStyle.textDecoration;
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.color = linkStyle.color;
+                  e.target.style.textDecoration = linkStyle.textDecoration;
+                }}
               >
-                Admin
+                Login/Register
               </Link>
               {/* Add more links for other sections as needed */}
             </div>
@@ -96,13 +141,15 @@ const HomePage = () => {
         <div
           style={{
             position: "absolute",
+            left:0,
             width: "100vw",
             height: "90vh",
             display: "flex",
+          
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            background: "rgba(0,0,0,0.4)",
+            background: 'rgba(0, 0, 0, 0.4)',
           }}
         >
           <h1
@@ -112,7 +159,7 @@ const HomePage = () => {
               marginBottom: "1rem",
             }}
           >
-            Welcome to Pro Players Syndicate
+            Welcome to ProGamers 
           </h1>
           <p style={{ fontSize: "1.25rem", marginBottom: "2rem" }}>
             Manage your teams, players, matches, and more!
@@ -120,15 +167,7 @@ const HomePage = () => {
 
           {/* Features Section */}
           <section style={{ marginBottom: "2rem" }}>
-            <h2
-              style={{
-                fontSize: "1.5rem",
-                fontWeight: "bold",
-                marginBottom: "1rem",
-              }}
-            >
-              Key Features
-            </h2>
+          
             <ul
               style={{
                 fontSize: "1.25rem",

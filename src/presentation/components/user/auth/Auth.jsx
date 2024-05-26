@@ -48,7 +48,8 @@ const Auth = ({ children }) => {
         style={{
           backgroundSize: "cover",
           height: "100vh",
-          color: "#f5f5f5",
+          // color: "#f5f5f5",
+          backgroundColor: "rgba(150, 0, 200, 0.4)"
         }}
       >
         <video

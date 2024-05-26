@@ -133,7 +133,7 @@ const PlayerView = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "62vh",
+                height: "58vh",
               }}
             >
               <CircularProgress style={{ color: "#6e43a3" }} />

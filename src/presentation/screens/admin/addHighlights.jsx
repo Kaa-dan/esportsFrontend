@@ -114,7 +114,7 @@ const AddHighlights = () => {
   }, [user]);
   return (
     <>
-      <Container sx={{ position: "relative", mt: 10, height: "73vh" }}>
+      <Container sx={{ position: "relative", mt: 10 ,height:"73vh"}}>
         <Box
           sx={{
             // position: "sticky",
@@ -199,13 +199,15 @@ const AddHighlights = () => {
             </Table>
           </TableContainer>
         </Paper>
+      </Container>
+
+      <div style={{marginBottom:0}}>
         <CustomPagination
           currentPage={page}
           totalPages={Math.ceil(highlightData.length / rowsPerPage)}
           onPageChange={onPageChange}
         />
-      </Container>
-
+      </div>
       <Modal
         open={open}
         onClose={() => setOpen(false)}
